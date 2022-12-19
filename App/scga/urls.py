@@ -2,7 +2,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.Start),  # Rotas homepage e estações de trabalho
+    
+    path('login/', views.login, name='login'),
+    
+    path('Start/', views.Start),  # Rotas homepage e estações de trabalho
     path('Estacao/',views.home),
     path('registrarEstacao/', views.registrarEstacao),
     path('Estacao/edicaoEstacao/<identificador>', views.edicaoEstacao),
