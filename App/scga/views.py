@@ -1,9 +1,8 @@
 from django.shortcuts import render
-
-# Create your views here.
-
 from django.shortcuts import render,redirect
 from .models import EstacaoTrabalho, Impressoras, Telefones
+from django.core.paginator import Paginator
+
 
 
 
@@ -13,7 +12,10 @@ def Start(request):
 
 def home(request):
     ativos = EstacaoTrabalho.objects.all()
-    return render(request, "GestaoEstacoes.html", {"ListarAtivos": ativos})
+    paginator = Paginator(ativos, 5) #mostra 5 objetos na página
+    page = request.GET.get('page')
+    ativos = paginator.get_page(page)
+    return render(request, "GestaoEstacoes.html", {"ativos": ativos})
 
 def registrarEstacao(request):
     nome = request.POST['txtNome']

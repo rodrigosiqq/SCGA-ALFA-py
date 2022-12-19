@@ -59,7 +59,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {%for a in ListarAtivos%}
+                        {%for a in ativos%}
                         <tr>
                             <td>{{a.identificador}}</td>
                             <td>{{a.nome}}</td>
@@ -73,6 +73,21 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                {% if ativos.has_previous %}
+                <a class="btn btn-default" href="?page={{ ativos.previous_page_number }}">Anterior</a>
+                {% endif %}
+            
+                {% for page in ativos.paginator.page_range %}
+                {% if page == ativos.number %}
+                    <a class="btn btn-primary disabled">{{ page }}</a>
+                {% else %}
+                    <a class="btn btn-default" href="?page={{ page }}">{{ page }}</a>
+                {% endif %}
+                {% endfor %}
+            
+                {% if ativos.has_next %}
+                    <a class="btn btn-default" href="?page={{ ativos.next_page_number }}">Próximo</a>
+                {% endif %}
         </div>
     </div>
 </div>
