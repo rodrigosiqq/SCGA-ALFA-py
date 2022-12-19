@@ -1,0 +1,46 @@
+{% extends './base.html' %}
+
+
+{% block title %}
+    Gestão de Estações de Trabalho
+{% endblock title %}
+    
+
+{% block body %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <br>
+        <br>
+        <br>
+        <b>Editar Estação de trabalho</b>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarEstacao/{{estacao.identificador}}" method="POST">{% csrf_token %}
+                    <div hidden id="ident" name="ident" value="{{estacao.identificador}}"></div>
+                    <div class="form-group">
+                        
+                        <input disabled type="text" id="txtident" class="form-control" name="txtident" value="{{estacao.identificador}}" placeholder="nome">
+                        <input type="text" id="txtNome" class="form-control" name="txtNome" value="{{estacao.nome}}" placeholder="nome">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                     <input type="text" id="txtmodelo" class="form-control" name="txtmodelo" value="{{estacao.modelo}}" placeholder="modelo">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtserial" class="form-control" name="txtserial" value="{{estacao.serial}}" placeholder="serial">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtsetor" class="form-control" name="txtsetor" value="{{estacao.setor}}" placeholder="setor">
+                    </div>  
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Enviar</button>
+                    </div>
+                        
+                </form>
+
+            </div>
+        </div>
+{% endblock body %}

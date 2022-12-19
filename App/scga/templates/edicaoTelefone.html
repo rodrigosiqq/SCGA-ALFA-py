@@ -1,0 +1,46 @@
+{% extends './base.html' %}
+
+
+{% block title %}
+    Gestão de Telefones
+{% endblock title %}
+    
+
+{% block body %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <br>
+        <br>
+        <br>
+        <b>Editar Estação de trabalho</b>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarTelefone/{{tel.identel}}" method="POST">{% csrf_token %}
+                    <div hidden id="identa" name="identa" value="{{tel.identel}}"></div>
+                    <div class="form-group">
+                        
+                        <input disabled type="text" id="txtident" class="form-control" name="txtident" value="{{tel.identel}}" placeholder="Id">
+                        <input type="text" id="txtmarca" class="form-control" name="txtmarca" value="{{tel.marca}}" placeholder="Marca">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                     <input type="text" id="txtmodelo" class="form-control" name="txtmodelo" value="{{tel.modelo}}" placeholder="modelo">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtramal" class="form-control" name="txtramal" value="{{tel.ramal}}" placeholder="Ramal">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtsetor" class="form-control" name="txtsetor" value="{{tel.setor}}" placeholder="setor">
+                    </div>  
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Enviar</button>
+                    </div>
+                        
+                </form>
+
+            </div>
+        </div>
+{% endblock body %}

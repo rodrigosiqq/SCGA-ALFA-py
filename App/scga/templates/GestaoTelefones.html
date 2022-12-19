@@ -1,0 +1,79 @@
+{% extends './base.html' %}
+
+
+{% block title %}
+    SCGA
+{% endblock title %}
+    
+
+{% block body %}
+
+<br>
+<br>
+<br>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+               <b>Gerenciar</b>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/resgistrarTelefone/" method="POST">{% csrf_token %}
+                        <div class="form-group">  
+                            <input type="text" id="txtmarca" class="form-control" name="txtmarca" placeholder="marca">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                         <input type="text" id="txtmodelo" class="form-control" name="txtmodelo" placeholder="modelo">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="txtramal" class="form-control" name="txtramal" placeholder="Ramal">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="txtsetor" class="form-control" name="txtsetor" placeholder="setor">
+                        </div>  
+                        <br>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block text-white">Enviar</button>
+                        </div>
+                            
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <div class="table-responsive">
+                <table class=" table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Ramal</th>
+                            <th>Setor</th>
+                            <th colspan="2">Opções</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for a in ListarAtivos%}
+                        <tr>
+                            <td>{{a.identel}}</td>
+                            <td>{{a.marca}}</td>
+                            <td>{{a.modelo}}</td>
+                            <td>{{a.ramal}}</td>
+                            <td>{{a.setor}}</td>
+                            <td><a href="edicaoTelefone/{{a.identel}}" class="btn btn-info">Editar</a></td>
+                            <td><a href="deletarTelefone/{{a.identel}}" class="btn btn-danger btnEliminacion">Deletar</a></td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

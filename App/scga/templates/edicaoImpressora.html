@@ -1,0 +1,46 @@
+{% extends './base.html' %}
+
+
+{% block title %}
+    Gestão de Impressoras
+{% endblock title %}
+    
+
+{% block body %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <br>
+        <br>
+        <br>
+        <b>Editar Estação de trabalho</b>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarImpressora/{{printers.ident}}" method="POST">{% csrf_token %}
+                    <div hidden id="ident" name="ident" value="{{printers.ident}}"></div>
+                    <div class="form-group">
+                        
+                        <input disabled type="text" id="txtident" class="form-control" name="txtident" value="{{printers.ident}}" placeholder="nome">
+                        <input type="text" id="txtNome" class="form-control" name="txtNome" value="{{printers.nome}}" placeholder="nome">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                     <input type="text" id="txtmodelo" class="form-control" name="txtmodelo" value="{{printers.modelo}}" placeholder="modelo">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtcups" class="form-control" name="txtcups" value="{{printers.cupsid}}" placeholder="Cups ID">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtsetor" class="form-control" name="txtsetor" value="{{printers.setor}}" placeholder="setor">
+                    </div>  
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Enviar</button>
+                    </div>
+                        
+                </form>
+
+            </div>
+        </div>
+{% endblock body %}

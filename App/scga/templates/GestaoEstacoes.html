@@ -1,0 +1,79 @@
+{% extends './base.html' %}
+
+
+{% block title %}
+    SCGA
+{% endblock title %}
+    
+
+{% block body %}
+
+<br>
+<br>
+<br>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+               <b>Gerenciar</b>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/registrarEstacao/" method="POST">{% csrf_token %}
+                        <div class="form-group">  
+                            <input type="text" id="txtNome" class="form-control" name="txtNome" placeholder="nome">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                         <input type="text" id="txtmodelo" class="form-control" name="txtmodelo" placeholder="modelo">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="txtserial" class="form-control" name="txtserial" placeholder="serial">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="txtsetor" class="form-control" name="txtsetor" placeholder="setor">
+                        </div>  
+                        <br>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block text-white">Enviar</button>
+                        </div>
+                            
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <div class="table-responsive">
+                <table class=" table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Modelo</th>
+                            <th>Serial</th>
+                            <th>Setor</th>
+                            <th colspan="2">Opções</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for a in ListarAtivos%}
+                        <tr>
+                            <td>{{a.identificador}}</td>
+                            <td>{{a.nome}}</td>
+                            <td>{{a.modelo}}</td>
+                            <td>{{a.serial}}</td>
+                            <td>{{a.setor}}</td>
+                            <td><a href="edicaoEstacao/{{a.identificador}}" class="btn btn-info">Editar</a></td>
+                            <td><a href="deletarEstacao/{{a.identificador}}" class="btn btn-danger btnEliminacion">Deletar</a></td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
