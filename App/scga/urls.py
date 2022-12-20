@@ -3,7 +3,8 @@ from . import views
 
 urlpatterns = [
     
-    path('login/', views.login, name='login'),
+    path('login/', views.login_view, name='login'),
+    
     
     path('Start/', views.Start),  # Rotas homepage e estações de trabalho
     path('Estacao/',views.home),

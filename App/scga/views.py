@@ -1,41 +1,42 @@
 from django.shortcuts import render
 from django.shortcuts import render,redirect
-from .models import EstacaoTrabalho, Impressoras, Telefones, User
+from .models import EstacaoTrabalho, Impressoras, Telefones
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
+from .forms import LoginForm
 
 
 
 
 
-def login(request):
+
+def login_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = User.objects.filter(username=username, password=password).first()
-        if user:
-            # login successful, redirect to homepage
-            return redirect('/Start')
-        else:
-            # login failed, show error message
-            return render(request, '127.4.4.1:800.html', {'error': 'Invalid username or password'})
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('/Start')
+            else:
+                form.add_error(None, print('Usuário ou senha incorretos'))
     else:
-        # render login form
-        return render(request, 'Login.html')
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form})
 
 
 
 
 
 
-    
-@login_required
+
+ 
 def Start(request):
     return render(request, 'Start.html')
     
     
-
 
 def home(request):
     ativos = EstacaoTrabalho.objects.all()

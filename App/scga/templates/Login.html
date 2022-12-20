@@ -12,9 +12,19 @@
 <br>
 <br>
 
-<div class="container text-center">
+
+
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Log in</button>
+</form>
+
+
+
+{% comment %} <div class="container text-center">
     <i class="bi bi-person-workspace" style="font-size: 5rem;"></i>
-    <form action="/login/" method="POST">{% csrf_token %}
+    <form action="/Start/" method="POST">{% csrf_token %}
         <div class="form-group">  
                                             <div class="container text-center"><b>Login</b><div>
                                             <br>
@@ -35,6 +45,6 @@
         </div>
             
 
-    </form>
+    </form> {% endcomment %}
     
 {%endblock%}
